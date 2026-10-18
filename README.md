@@ -1,66 +1,115 @@
 # Velocity Rivals 🏎️
 
-### Off-Road Driving Prototype | Unreal Engine 5 | Blueprints
+### Unreal Engine 5 · Off-Road Driving Prototype · Blueprints / PCG / Niagara
 
-**Status:** v0.1 — Work in Progress  
-**Focus:** Gameplay prototyping, procedural environment generation, level design, and real-time VFX
+**Portfolio build: v0.1** · **Status: Work in progress** · **Mode: Free driving**
 
-Velocity Rivals is a **playable off-road driving prototype** developed in Unreal Engine 5. The project explores vehicle controls, terrain creation, procedural placement of desert vegetation and rocks, visual navigation aids, and reactive water/mud effects.
+![Velocity Rivals buggy navigating a desert canyon in-game](screenshots/00-gameplay-hero.jpg)
 
-The current version is a **free-driving demonstration**, **not yet a complete racing game**: checkpoints, lap tracking and race completion are planned for a future iteration.
+> A playable off-road vehicle prototype set in a hand-sculpted desert environment. Built to explore **Blueprint gameplay systems**, **terrain and route design**, **procedural environment generation**, and **Niagara visual effects**.
 
-## Screenshots
+## 🎬 Gameplay — 71-second highlight reel
 
-![Off-road terrain and circuit layout developed with Landscape Splines](screenshots/01-offroad-circuit.jpg)
-*Terrain and route layout in the Unreal Editor (editing guides visible).*
+[![Watch the Velocity Rivals gameplay video](screenshots/06-gameplay-route-arrows.jpg)](media/VelocityRivals_Gameplay_Demo_v01.mp4)
 
-| Procedural rocks | Procedural desert vegetation |
+**▶ [Watch / download the gameplay demo (MP4)](media/VelocityRivals_Gameplay_Demo_v01.mp4)**
+
+*Real capture from the playable prototype. Selected gameplay segments have been trimmed into a short reel. Video is silent because the original recording contained no audible sound. It shows the driving systems and environment; it does **not** claim to demonstrate a complete race or the mud splash interaction.*
+
+## At a glance
+
+| Category | Implemented in v0.1 |
 | --- | --- |
-| ![Rocks scattered across the desert](screenshots/02-procedural-rocks.jpg) | ![Desert bushes placed with PCG](screenshots/03-desert-vegetation.jpg) |
+| Genre | Off-road free-driving prototype |
+| Vehicle | Playable buggy, keyboard input, on-screen control UI |
+| HUD | Speed/gear readout, boost charge, engine temperature/overheat feedback |
+| Level | Custom desert terrain, sculpted routes, Landscape Splines |
+| Navigation | Reusable 3D directional arrow markers |
+| Environment | PCG vegetation and rock scattering, varied mesh scale/rotation |
+| VFX | Blueprint-triggered Niagara water/mud splash system |
+| Current scope | Technical prototype; **no checkpoints or lap-completion system yet** |
 
-> These are development screenshots. A gameplay demonstration video may be added later.
+## 🎮 Driving and route guidance
 
-## Implemented systems
+The free-driving build lets the player navigate a rugged sand route with slopes, dunes, rocks and directional markers. The vehicle UI communicates speed, gear and boost/temperature states. I iterated on the **scale and placement of obstacles** after playtesting to preserve visibility from the third-person vehicle camera.
 
-- **Vehicle gameplay (Blueprints):** drivable off-road vehicle, keyboard and on-screen driving controls, boost, and related UI indicators.
-- **Terrain and route design:** sculpted desert landscape and a driving route shaped with Landscape Splines, without relying on a conventional asphalt road surface.
-- **Navigation aids:** reusable Blueprint-based directional arrow actors to guide the driver at turns and junctions.
-- **Procedural Content Generation (PCG):** placement of multiple desert plant and rock meshes within configurable volumes, with variation in density, scale and orientation.
-- **Water and mud interactions:** reusable `BP_MudPuddle` actor with a water surface, trigger overlap events, and Niagara splash spawning when the player vehicle enters the trigger.
-- **World-building iteration:** continuous adjustments to terrain, prop placement and visibility based on playtesting.
+![In-game off-road route with three blue directional signs](screenshots/06-gameplay-route-arrows.jpg)
+*Route markers guide the player through intersections without a traditional asphalt racetrack.*
 
-## Technical highlights
+![Buggy gameplay on a desert route with boost visuals](screenshots/08-gameplay-boost.jpg)
+*On-screen boost readiness and engine status provide driving feedback.*
 
-| Area | Tools / techniques |
-| --- | --- |
-| Engine | Unreal Engine 5 |
-| Gameplay scripting | Visual scripting with Blueprints |
-| Terrain | Landscape, sculpting, Landscape Splines |
-| Procedural placement | PCG Graph, Surface Sampler, Transform Points, Static Mesh Spawner |
-| Particle effects | Niagara System, burst emission, splash particles |
-| User interface | Unreal Motion Graphics / Widgets |
-| Content integration | Third-party assets from Fab, adapted and assembled into a playable level |
+## 🏜️ Building the environment
 
-### What I worked on
+### 1. Terrain sculpting and off-road course layout
 
-I implemented and configured the playable driving prototype, designed the off-road terrain and route, created procedural vegetation and rock placement workflows, set up the directional arrow Blueprint, and built the mud/water trigger-and-splash interaction. The focus has been on learning how Unreal Engine systems connect in a working project, rather than simply placing static assets.
+The environment uses **Landscape sculpting, smoothing and Landscape Splines** to create a natural-looking drivable route. I replaced the initial visible track mesh with a sand-based path and created elevated terrain to shape the playable space.
 
-## Current scope and next steps
+![Unreal Editor aerial view of the sculpted desert route](screenshots/01-offroad-circuit.jpg)
+*Terrain and route layout during editor development (guides visible).*
 
-**Available in v0.1:** free driving around the desert track, vehicle controls and HUD, environment dressing, directional signs, and experimental water/mud splash effects.
+![Route planning and arrow positioning in Unreal Editor](screenshots/05-directional-arrows-editor.jpg)
+*In-editor route planning and reusable navigation markers.*
 
-**Planned for later versions:** checkpoints, laps and race results; expanded vehicle audio and ground feedback; improved driving surface details; further optimization and polish.
+### 2. Procedural rocks and vegetation (PCG)
 
-## Project availability
+I configured **PCG Graphs and PCG Volumes** to populate parts of the desert. My graphs use **Get Landscape Data → Surface Sampler → Transform Points → Static Mesh Spawner** to place assets on the Landscape, with controllable density, randomized rotation, and scale variation.
 
-This repository is a **portfolio showcase** containing documentation and development screenshots. The full Unreal Engine project is **not included in this public repository**, in part because it relies on third-party assets subject to their own licenses.
+![PCG rock distribution in Unreal Editor](screenshots/02-procedural-rocks.jpg)
+*Rock meshes scattered and tuned within PCG volumes.*
 
-## Asset attribution and rights
+![PCG plant distribution in Unreal Editor](screenshots/03-desert-vegetation.jpg)
+*Desert vegetation placement and density tuned for the playable camera.*
 
-The vehicle and multiple environment meshes, materials and other assets were sourced from external packs, including assets distributed through **Fab**. All rights to third-party content remain with their respective creators. My contributions are the project setup, Blueprint logic and integrations, level design, environment assembly, and PCG/Niagara configuration described above.
+![Driving through the sculpted canyon](screenshots/07-gameplay-canyon.jpg)
+*The resulting environment from the vehicle camera.*
 
-See [ASSET_CREDITS.md](ASSET_CREDITS.md) for details and the ongoing asset attribution checklist. Screenshots are for portfolio presentation only.
+### 3. Water / mud puddle and Niagara splash interaction
+
+I created a reusable **`BP_MudPuddle`** Actor with a water-surface mesh and a **`WaterTrigger`** overlap volume. On player entry, Blueprint compares the overlapping Actor with the player Pawn and spawns the **`NS_MudSplash`** Niagara effect.
+
+![Mud puddle and Niagara spawn logic inside the Blueprint editor](screenshots/04-niagara-mud-trigger.jpg)
+*Blueprint implementation captured in-editor. This interaction is implemented but is not clearly shown in the gameplay highlight reel.*
+
+### 4. Blueprint vehicle gameplay / UI
+
+This prototype integrates **Blueprint-based vehicle controls**, player input and UMG widgets. HUD feedback shown in the video includes the speed/gear readout and boost charge with engine overheating behavior. Keyboard and touch-style interface controls were prepared during the project.
+
+![Vehicle viewed from behind in the prototype](screenshots/09-gameplay-vehicle.jpg)
+*Playable off-road vehicle and in-game HUD.*
+
+## 🛠️ Technical stack
+
+**Unreal Engine 5** · **Blueprint Visual Scripting** · **Landscape / Splines** · **PCG** · **Niagara** · **UMG Widgets** · **Fab asset integration**
+
+## 👨‍💻 What I contributed
+
+- Assembled and iterated on the playable off-road driving experience and its Blueprint interactions.
+- Sculpted and refined the desert terrain and planned the navigable routes.
+- Configured PCG Graphs to populate regions with variation in vegetation and rocks.
+- Implemented the reusable overlap-triggered water/mud Niagara interaction.
+- Integrated route arrows and adjusted visual readability based on gameplay tests.
+- Integrated external art assets from Fab. **The third-party meshes and textures are not my original 3D models.**
+
+## 🧭 Next steps
+
+This repository intentionally showcases **version 0.1**, not a finished racing game. Planned improvements include checkpoints, laps, race completion, better collision/boundary handling, surface response, audio, a more polished mud VFX pass, and optimization/performance profiling. **These are not presented as completed features.**
+
+## 📂 Repository structure
+
+```text
+VelocityRivals-Portfolio/
+├── README.md
+├── ASSET_CREDITS.md
+├── CV_PORTFOLIO_TEXT.md
+├── GITHUB_UPLOAD_PT.md
+├── screenshots/           # Captures of gameplay and editor workflows
+└── media/
+    └── VelocityRivals_Gameplay_Demo_v01.mp4
+```
+
+This is a **public portfolio showcase**, not the complete Unreal Engine source project or a downloadable packaged game. Importable third-party art assets are deliberately excluded. Read [asset and licensing notes](ASSET_CREDITS.md).
 
 ---
 
-*Personal learning and portfolio project. Not affiliated with or endorsed by Epic Games.*
+*Independent learning/portfolio project. Unreal Engine is an Epic Games product. This project is not affiliated with or endorsed by Epic Games or MotorStorm.*
